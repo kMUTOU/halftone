@@ -1,11 +1,17 @@
+<mat-toolbar color="primary">
+  <span>Halftoned Image Processing</span>
+</mat-toolbar>
+
 <div class="container">
-  <h1>Halftoned Image Processing</h1>
   <div>
     <mat-grid-list cols="2" rowHeight="1:1">
       <mat-grid-tile>
         <mat-card>
           <mat-card-title>
-            <h2>original image</h2>
+            <mat-toolbar color="primary">
+              <span>original image</span>
+              <mat-icon>image</mat-icon>
+            </mat-toolbar>
           </mat-card-title>
           <mat-card-content 
           [appDropFiles] 
@@ -30,7 +36,10 @@
       <mat-grid-tile>
         <mat-card>
           <mat-card-title>
-            <h2>cropped image</h2>
+            <mat-toolbar color="primary">
+              <span>cropped image</span>
+              <mat-icon>crop</mat-icon>
+            </mat-toolbar>
           </mat-card-title>
           <mat-card-content>
             <img [src]="croppedImage" class="cropped"/>
@@ -43,7 +52,10 @@
       <mat-grid-tile>
         <mat-card>
           <mat-card-content>
-            <h2>Input / Settings</h2>
+            <mat-toolbar color="primary">
+              <span>Input / Settings</span>
+              <mat-icon>settings</mat-icon>
+            </mat-toolbar>
             <!--
               <mat-label>Input Image</mat-label>
               <input type="file" (change)="fileChangeEvent($event)"/>
@@ -93,7 +105,10 @@
       <mat-grid-tile>
         <mat-card>
           <mat-card-title>
-            <h2>Halftoned Image</h2>
+            <mat-toolbar color="primary">
+              <span>Halftoned Image</span>
+              <mat-icon>crop_original</mat-icon>
+            </mat-toolbar>
           </mat-card-title>
           <mat-card-content>
             <div *ngIf="isProcessing" class="loading-shade">
