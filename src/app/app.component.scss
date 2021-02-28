@@ -26,25 +26,32 @@
 }
 
 image-cropper {
-    width: 98%;
     height: 480px;
     vertical-align: top;
 }
 
 img.cropped {
-//    width: 98%;
     height: 480px;
     vertical-align: top;
 }
 
 mat-card {
-//    width: 500px;
     width: 100%;
     text-align: center;
+    padding: 1px;
+}
+
+.content-message {
+    width: inherit;
+    height: inherit;
+    text-align: center;
+    vertical-align: middle;
 }
 
 mat-card-title > mat-toolbar > span {
+    width: inherit;
     text-align: center;
+    vertical-align: middle;
 }
 
 .loading-shade {

@@ -20,6 +20,7 @@ import { DropFilesDirective } from './drop-files.directive';
 import { ImageCropperModule } from 'ngx-image-cropper';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
 /*
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -63,7 +64,11 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatButtonModule,
     MatSliderModule,
     MatProgressSpinnerModule,
-    MatToolbarModule
+    MatToolbarModule,
+
+    // https://github.com/angular/flex-layout Flex-Layout
+    FlexLayoutModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
