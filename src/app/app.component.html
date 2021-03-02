@@ -15,7 +15,11 @@
       [appDropFiles] 
       (selectedFiles)="attacheFiles($event)"
       class="attache-file-zone">
-        <div class="content-message">Drag Image File Here!</div>
+        <div *ngIf="files.length == 0" class="content-message">
+          <span>Drag Image File Here!</span><br/>
+          <mat-label>or Input Image</mat-label>
+          <input type="file" (change)="fileChangeEvent($event)"/>  
+        </div>
         <image-cropper 
           [imageFile]="inputImage"
           [imageChangedEvent]="imageChangedEvent"
@@ -28,9 +32,17 @@
           (cropperReady)="cropperReady()"
           (loadImageFailed)="loadImageFailed()"
         ></image-cropper>
+        <div *ngIf="files.length > 1">
+          <mat-form-field appearance="fill">
+            <mat-label>ファイル切替</mat-label>
+            <mat-select [(value)]="targetFileIndex" (selectionChange)="selectImage($event)">
+              <mat-option *ngFor="let file of files; index as num" [value]="num">{{file.filename}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
       </mat-card-content>
     </mat-card>
-    <mat-card fxFlex="50" fxLayoutGap="2%"> <!-- cropped image area-->
+    <mat-card fxFlex="50" fxLayoutGap="2"> <!-- cropped image area-->
       <mat-card-title>
         <mat-toolbar color="primary">
           <span>cropped image</span>
@@ -54,10 +66,6 @@
         </mat-toolbar>
       </mat-card-title>
       <mat-card-content>
-        <!--
-          <mat-label>Input Image</mat-label>
-          <input type="file" (change)="fileChangeEvent($event)"/>
-        -->
         <div fxLayout="column" fxLayoutGap="2%">
           <div fxFlex="15" fxLayout="row" fxLayoutGap="2%">
             <span fxFlex="20" fxLayoutAlign="start" gdAlignColumns="center">Target Image Size</span>

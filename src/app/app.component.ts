@@ -1,7 +1,7 @@
 import { Component, ElementRef } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
-import { ImageManipulatorService } from './image-manipulator.service'
+import { ImageManipulatorService } from './image-manipulator.service';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +17,8 @@ export class AppComponent {
   width = 1080;
   height = 1080;
   files: any = [];
+  sourceFiles: File[]= [];
+  targetFileIndex: number = 0;
 
   inputImage: File = null;
   imageChangedEvent: any = '';
@@ -41,7 +43,8 @@ export class AppComponent {
   }
 
   fileChangeEvent(event: any): void {
-      this.imageChangedEvent = event;
+    this.imageChangedEvent = event;
+    this.attacheFiles(this.imageChangedEvent.target.files);
   }
 
   imageCropped(event: ImageCroppedEvent) {
@@ -84,8 +87,7 @@ export class AppComponent {
       if (!file.type.match('image/.*')) {
         continue;
       }
-
-      this.inputImage = files[0];
+      this.sourceFiles.push(file);
       const reader = new FileReader();
 
       reader.onload = (e) => {
@@ -108,6 +110,8 @@ export class AppComponent {
 
       reader.readAsDataURL(file);
     }
+
+    this.inputImage = this.sourceFiles[0];
   }
 
   removeFile(num: number): void {
@@ -120,7 +124,7 @@ export class AppComponent {
   sampleSizeUpdated(): void {
     this.isProcessing = true;
     this.imgSrv.halftone(
-      this.files[0].path,
+      this.files[this.targetFileIndex].path,
       this.croppingPosition,
       this.width,
       this.height,
@@ -192,6 +196,10 @@ export class AppComponent {
     this.isProcessing = false;
   }
 
+  selectImage(event: any): void {
+    this.inputImage = this.sourceFiles[this.targetFileIndex];
+
+  }
   /**
    * base64文字列になっているバイナリデータをBlobバイナリデータに変換する
    *

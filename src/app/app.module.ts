@@ -15,6 +15,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatSelectModule } from '@angular/material/select';
 
 import { DropFilesDirective } from './drop-files.directive';
 import { ImageCropperModule } from 'ngx-image-cropper';
@@ -33,7 +34,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 import { MatRadioModule } from '@angular/material/radio';
-import { MatSelectModule } from '@angular/material/select';
+
 
 import { MatSortModule } from '@angular/material/sort';
 import { MatStepperModule } from '@angular/material/stepper';
@@ -65,6 +66,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatSliderModule,
     MatProgressSpinnerModule,
     MatToolbarModule,
+    MatSelectModule,
 
     // https://github.com/angular/flex-layout Flex-Layout
     FlexLayoutModule,
