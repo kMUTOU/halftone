@@ -29,27 +29,17 @@ export class DropFilesDirective {
       }
   }
 
-
-  @HostListener('change')
-  public onChange(): any {
-    const files = this.element.nativeElement.files;
-    this.selectedFiles.emit(files);
-
-    // for (const file of files) {
-    //   this.attachments.push(file);
-    // }
-
-    this.element.nativeElement.value = '';
-  }
+  // @HostListener('change')
+  // public onChange(): any {
+  //   const files = this.element.nativeElement.files;
+  //   this.selectedFiles.emit(files);
+  //   this.element.nativeElement.value = '';
+  // }
 
   @HostListener('drop', [ '$event' ])
   public onDrop(event: any): any {
     const files = event.dataTransfer.files;
     this.selectedFiles.emit(files);
-
-    // for (const file of files) {
-    //   this.attachments.push(file);
-    // }
 
     event.preventDefault();
     event.stopPropagation();

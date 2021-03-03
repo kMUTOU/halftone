@@ -18,7 +18,7 @@
         <div *ngIf="files.length == 0" class="content-message">
           <span>Drag Image File Here!</span><br/>
           <mat-label>or Input Image</mat-label>
-          <input type="file" (change)="fileChangeEvent($event)"/>  
+          <input type="file" multiple (change)="fileChangeEvent($event)"/>  
         </div>
         <image-cropper 
           [imageFile]="inputImage"
@@ -32,14 +32,6 @@
           (cropperReady)="cropperReady()"
           (loadImageFailed)="loadImageFailed()"
         ></image-cropper>
-        <div *ngIf="files.length > 1">
-          <mat-form-field appearance="fill">
-            <mat-label>ファイル切替</mat-label>
-            <mat-select [(value)]="targetFileIndex" (selectionChange)="selectImage($event)">
-              <mat-option *ngFor="let file of files; index as num" [value]="num">{{file.filename}}</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
       </mat-card-content>
     </mat-card>
     <mat-card fxFlex="50" fxLayoutGap="2"> <!-- cropped image area-->
@@ -111,6 +103,14 @@
               class="mat-slider">
             </mat-slider>    
           </div>
+          <div *ngIf="files.length > 1" fxFlex="25" fxLayout="row" fxLayoutGap="2%">
+            <mat-form-field appearance="fill" fxFlex="100" fxLayoutAlign="start">
+              <mat-label>Select the file</mat-label>
+              <mat-select [(value)]="targetFileIndex" (selectionChange)="selectImage($event)">
+                <mat-option *ngFor="let file of files; index as num" [value]="num">{{file.filename}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>  
           <div fxFlex="10" fxLayout="row" fxLayoutAlign="center" fxLayoutGap="20px">
             <button mat-raised-button fxFlex="45" color="accent" (click)="sampleSizeUpdated()">CREATE!</button>
             <button mat-raised-button fxFlex="45" color="warn" (click)="initialize()">RESET</button>

@@ -87,7 +87,7 @@ export class AppComponent {
       if (!file.type.match('image/.*')) {
         continue;
       }
-      this.sourceFiles.push(file);
+
       const reader = new FileReader();
 
       reader.onload = (e) => {
@@ -101,17 +101,16 @@ export class AppComponent {
         this.upload(sendData).subscribe(
           data => {
             this.files.push(data);
+            this.sourceFiles.push(file);
+            this.inputImage = this.sourceFiles[0];
           },
-          error => {
-            console.log(error);
-          }
+          error => console.log(error)
         );
       };
 
       reader.readAsDataURL(file);
     }
 
-    this.inputImage = this.sourceFiles[0];
   }
 
   removeFile(num: number): void {
@@ -187,6 +186,7 @@ export class AppComponent {
    */
   initialize(): void {
     this.files = [];
+    this.sourceFiles = [];
     this.inputImage = null;
     this.imageChangedEvent = '';
     this.originalCropImage = '';
